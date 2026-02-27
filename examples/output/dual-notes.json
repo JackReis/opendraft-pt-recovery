@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-02-27T21:54:26.258Z",
+  "session_id": "pt-YYYY-MM-DD",
+  "operational": {
+    "title": "Operational Notes",
+    "priorities": [
+      "Preserve consistency on current assignment block.",
+      "Observe sensitivity signals during rotation/load transitions.",
+      "Log daily custom metrics for progression decisions."
+    ],
+    "action_checklist": [
+      "1. Good. Keep anti-rotation band work: 2 sets of 8 each side.",
+      "2. Add wall press with exhale holds: 3 sets of 5, 20 second holds.",
+      "3. Capture a custom metric called morning_settle_minutes each day."
+    ],
+    "follow_up_actions": [
+      "Track morning_settle_minutes daily and review trend before next session."
+    ],
+    "blockers_or_watchouts": [
+      "Pain after driving was about 4 out of 10.",
+      "Morning stiffness still there."
+    ],
+    "next_session_prep": [
+      "Bring trend snapshot for: morning_settle_minutes.",
+      "Confirm schedule: Tuesday at 5 PM."
+    ]
+  },
+  "reflective": {
+    "title": "Reflective Notes (Non-Diagnostic)",
+    "narrative_summary": "Session context from YYYY-MM-DD with provider [PROVIDER_NAME]. Observed themes: Pain after driving was about 4 out of 10. | Morning stiffness still there. Context sensitivity: monitor day-to-day variability and adherence conditions. This summary is non-diagnostic and intended for workflow reflection only.",
+    "pattern_observations": [
+      "Pain after driving was about 4 out of 10.",
+      "Morning stiffness still there."
+    ],
+    "context_and_nuance": [
+      "Different daily conditions can shift performance and comfort signals.",
+      "Progress interpretation should include adherence, fatigue, and routine constraints."
+    ],
+    "review_prompt": "What changed this week in routine, load, or recovery context that best explains the session pattern?"
+  },
+  "safety": {
+    "non_diagnostic": true,
+    "human_review_required": true
+  }
+}

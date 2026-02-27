@@ -1,5 +1,6 @@
 "use client";
 
+import dashboardSync from "@/data/dashboard-sync.json";
 import { useMemo, useState } from "react";
 
 type SessionStatus = "completed" | "upcoming" | "in-review";
@@ -274,6 +275,7 @@ export default function Home() {
   ];
 
   const selectedMode = templateModes[mode];
+  const enhancedNotes = dashboardSync.dashboard.enhanced_notes;
 
   return (
     <main className="app-shell">
@@ -458,6 +460,38 @@ export default function Home() {
                       <li key={item} className="info-card">{item}</li>
                     ))}
                   </ul>
+                </article>
+              </section>
+
+              <section className="split-grid">
+                <article className="panel">
+                  <h3>{enhancedNotes.operational.title}</h3>
+                  <div className="stack mt-2">
+                    {enhancedNotes.operational.priorities.map((item) => (
+                      <div key={item} className="info-card">
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="label" style={{ marginTop: "0.75rem" }}>Action Checklist</p>
+                  <ul className="stack mt-2">
+                    {enhancedNotes.operational.action_checklist.map((item) => (
+                      <li key={item} className="info-card">{item}</li>
+                    ))}
+                  </ul>
+                </article>
+
+                <article className="panel">
+                  <h3>{enhancedNotes.reflective.title}</h3>
+                  <p className="muted mt-2">{enhancedNotes.reflective.narrative_summary}</p>
+                  <div className="stack mt-2">
+                    {enhancedNotes.reflective.context_and_nuance.map((item) => (
+                      <div key={item} className="info-card">{item}</div>
+                    ))}
+                    <div className="info-card success">
+                      <strong>Review Prompt:</strong> {enhancedNotes.reflective.review_prompt}
+                    </div>
+                  </div>
                 </article>
               </section>
 

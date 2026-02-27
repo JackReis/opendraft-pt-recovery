@@ -2,6 +2,7 @@
   "session_id": "pt-YYYY-MM-DD",
   "session_date": "YYYY-MM-DD",
   "provider": "[PROVIDER_NAME]",
+  "source": "transcript",
   "metrics": {
     "pain_after_drive": "4/10",
     "custom_metrics": [
@@ -9,7 +10,8 @@
     ]
   },
   "findings": [
-    "Stiffness reported"
+    "Pain after driving was about 4 out of 10.",
+    "Morning stiffness still there."
   ],
   "assignments": [
     "Good. Keep anti-rotation band work: 2 sets of 8 each side.",
@@ -17,12 +19,13 @@
     "Capture a custom metric called morning_settle_minutes each day."
   ],
   "follow_ups": [
-    "Track morning_settle_minutes daily"
+    "Track morning_settle_minutes daily and review trend before next session."
   ],
   "next_session": "Tuesday at 5 PM",
-  "notes": "Auto-generated from transcript. Review before clinical use.",
+  "notes": "Auto-generated from transcript. Human review required before clinical use.",
   "privacy": {
     "sanitized_template": true,
-    "placeholders_expected": true
+    "placeholders_expected": true,
+    "non_diagnostic": true
   }
 }

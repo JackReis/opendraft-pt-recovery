@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test",
+    "check": "npm run test && npm run lint",
+    "pipeline:session": "node scripts/process-transcript.mjs examples/transcripts/sample-pt-transcript.txt examples/output/generated-session.json",
+    "pipeline:notes": "node scripts/generate-dual-notes.mjs examples/output/generated-session.json examples/output/dual-notes.json examples/transcripts/sample-pt-transcript.txt",
+    "pipeline:dashboard": "node scripts/update-dashboard-data.mjs examples/output/generated-session.json examples/output/dual-notes.json src/data/dashboard-sync.json",
+    "pipeline:all": "npm run pipeline:session && npm run pipeline:notes && npm run pipeline:dashboard"
   },
   "dependencies": {
     "next": "16.1.6",

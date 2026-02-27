@@ -10,23 +10,27 @@ It turns session inputs into an operational PT workflow UI:
 - assignments and follow-ups
 - open questions and event chronology
 - adaptability modes in the same interface (single product surface)
+- enhanced dual-notes sections synced from transcript pipeline
 
-## Transcript → Notes process (important)
+## Transcript -> Canonical Session -> Dual Notes -> Dashboard
 
-This project is designed around a structured input flow:
+This project uses a single-source-of-truth (SSOT) model:
 
-1. Capture session transcript/notes (and optional exercise photo evidence)
-2. Normalize into date-based session records (canonical source-of-truth pattern)
-3. Render operational views (timeline, findings, assignments, follow-ups, custom metrics)
-4. Keep human review in the loop for low-confidence/inferred items
+1. Transcript input is parsed into canonical session JSON
+2. Canonical session drives dual notes outputs:
+   - operational notes (action-oriented)
+   - reflective notes (context + nuance, non-diagnostic)
+3. Session + notes are synced into dashboard JSON sections
+4. UI renders dashboard projections from that synced structure
 
-The UI demonstrates the workflow layer. Canonical records should live in structured session data (e.g., per-date JSON records).
+Learn More explainer: `/learn-more`
 
 ## Safety + scope
 
 - This is a workflow/organization tool, not medical diagnosis.
 - Context and metrics are user-provided and customizable.
-- Always validate clinical decisions with qualified professionals.
+- Always validate care decisions with qualified professionals.
+- Public examples are sanitized and placeholder-safe.
 
 ## Tech stack
 
@@ -41,29 +45,42 @@ npm install
 npm run dev
 ```
 
-## Production build
+## End-to-end pipeline commands
 
 ```bash
+# 1) Transcript -> canonical session JSON
+npm run pipeline:session
+
+# 2) Canonical session -> dual notes JSON
+npm run pipeline:notes
+
+# 3) Session + notes -> dashboard sync JSON
+npm run pipeline:dashboard
+
+# or run all three
+npm run pipeline:all
+```
+
+Generated artifacts:
+- `examples/output/generated-session.json`
+- `examples/output/dual-notes.json`
+- `src/data/dashboard-sync.json`
+
+## Quality checks
+
+```bash
+npm test
+npm run lint
 npm run build
-npm start
+# combined basic checks
+npm run check
 ```
 
 ## Routes
 
-- `/` → primary PT Sessions product experience
-- `/launch` → lightweight teaser/marketing page
-
-## Transcript processing (sanitized public example)
-
-A basic public script is included so buyers can understand the workflow without exposing personal medical history.
-
-```bash
-node scripts/process-transcript.mjs \
-  examples/transcripts/sample-pt-transcript.txt \
-  examples/output/generated-session.json
-```
-
-This generates a structured session JSON with placeholder-safe patterns.
+- `/` -> primary PT Sessions dashboard
+- `/launch` -> lightweight teaser/marketing page
+- `/learn-more` -> explainer for SSOT and transformation flow
 
 ## Live links
 

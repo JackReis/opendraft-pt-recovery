@@ -21,6 +21,9 @@ export default function LaunchPage() {
             <Link className="btn-dark" href="/">
               Open Live PT Sessions App
             </Link>
+            <Link className="btn-light" href="/learn-more">
+              Learn More (Pipeline)
+            </Link>
             <a className="btn-light" href={githubUrl} target="_blank" rel="noreferrer">
               View GitHub
             </a>
