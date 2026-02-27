@@ -53,6 +53,18 @@ npm start
 - `/` → primary PT Sessions product experience
 - `/launch` → lightweight teaser/marketing page
 
+## Transcript processing (sanitized public example)
+
+A basic public script is included so buyers can understand the workflow without exposing personal medical history.
+
+```bash
+node scripts/process-transcript.mjs \
+  examples/transcripts/sample-pt-transcript.txt \
+  examples/output/generated-session.json
+```
+
+This generates a structured session JSON with placeholder-safe patterns.
+
 ## Live links
 
 - Demo: https://opendraft-pt-recovery.vercel.app

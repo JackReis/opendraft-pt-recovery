@@ -1,0 +1,28 @@
+{
+  "session_id": "pt-YYYY-MM-DD",
+  "session_date": "YYYY-MM-DD",
+  "provider": "[PROVIDER_NAME]",
+  "metrics": {
+    "pain_after_drive": "4/10",
+    "custom_metrics": [
+      "morning_settle_minutes"
+    ]
+  },
+  "findings": [
+    "Stiffness reported"
+  ],
+  "assignments": [
+    "Good. Keep anti-rotation band work: 2 sets of 8 each side.",
+    "Add wall press with exhale holds: 3 sets of 5, 20 second holds.",
+    "Capture a custom metric called morning_settle_minutes each day."
+  ],
+  "follow_ups": [
+    "Track morning_settle_minutes daily"
+  ],
+  "next_session": "Tuesday at 5 PM",
+  "notes": "Auto-generated from transcript. Review before clinical use.",
+  "privacy": {
+    "sanitized_template": true,
+    "placeholders_expected": true
+  }
+}

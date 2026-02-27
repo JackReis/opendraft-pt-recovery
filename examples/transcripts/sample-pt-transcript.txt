@@ -1,0 +1,13 @@
+[PT SESSION TRANSCRIPT - SANITIZED EXAMPLE]
+Date: YYYY-MM-DD
+Provider: [PROVIDER_NAME]
+
+Therapist: Let's review pain and mobility from this week.
+Patient: Pain after driving was about 4 out of 10.
+Therapist: Good. Keep anti-rotation band work: 2 sets of 8 each side.
+Therapist: Add wall press with exhale holds: 3 sets of 5, 20 second holds.
+Patient: Morning stiffness still there.
+Therapist: Capture a custom metric called morning_settle_minutes each day.
+Therapist: Next session Tuesday at 5 PM.
+
+[END]

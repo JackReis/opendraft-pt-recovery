@@ -1,0 +1,21 @@
+{
+  "session_id": "pt-YYYY-MM-DD",
+  "session_date": "YYYY-MM-DD",
+  "provider": "[PROVIDER_NAME]",
+  "metrics": {
+    "pain_after_drive": "4/10",
+    "custom_metrics": ["morning_settle_minutes"]
+  },
+  "findings": [
+    "Morning stiffness still present"
+  ],
+  "assignments": [
+    "Anti-rotation band work: 2x8 each side",
+    "Wall press + exhale hold: 3x5, 20s holds"
+  ],
+  "follow_ups": [
+    "Track morning_settle_minutes daily"
+  ],
+  "next_session": "Tuesday 5:00 PM",
+  "notes": "Sanitized demo output. Replace placeholders with user-specific data at runtime."
+}
