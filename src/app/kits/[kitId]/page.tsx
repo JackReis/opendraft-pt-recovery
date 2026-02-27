@@ -11,7 +11,7 @@ export default async function KitDetailPage({
     "Session timeline with status and owner",
     "Custom metric tiles mapped to user vocabulary",
     "Findings, assignments, open questions, follow-ups",
-    "Export-safe notes for clinician review",
+    "Export-ready note summaries for clinician review",
   ];
 
   return (

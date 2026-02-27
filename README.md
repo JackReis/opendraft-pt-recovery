@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OpenDraft PT Sessions Demo
 
-## Getting Started
+OpenDraft template demonstrating a PT session dashboard UX: timeline, findings, assignments, follow-ups, and kit placeholders.
 
-First, run the development server:
+## Listing Readiness (truthful current state)
+
+- **GitHub URL:** `https://github.com/JackReis/opendraft-pt-recovery`
+- **Live demo URL:** `https://opendraft-pt-recovery.vercel.app`
+- **Screenshots available:**
+  - `public/pt-dashboard-shot.png` (1600x900)
+  - `public/life-dashboard-teaser-blur.png` (1600x900)
+- **ZIP package:** not committed in-repo. Create from repo root when needed:
+  - `zip -r opendraft-pt-recovery.zip . -x "node_modules/*" ".next/*" ".git/*"`
+
+## Trust / Safety Positioning
+
+- This project is a **UI/demo template**, not a medical device and not a diagnostic tool.
+- Any PT context shown is **demo or user-provided context notes**.
+- `custom metrics` means user-defined tracking labels/fields (not clinically validated scoring).
+- Wording avoids compliance/security guarantees (for example, no HIPAA/safe-storage certification claims).
+
+## SSOT Alignment
+
+To match vault-first SSOT principles from PT docs:
+
+- Keep canonical session facts in records such as `pt/sessions/YYYY-MM-DD.json`.
+- Treat this app as a **view layer** over canonical data, not the system of record.
+- Avoid maintaining conflicting copies of session truth inside UI components.
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build Validation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```

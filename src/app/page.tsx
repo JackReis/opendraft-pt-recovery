@@ -264,6 +264,9 @@ export default function Home() {
             <p className="mt-3 max-w-3xl text-base text-slate-700 md:text-lg">
               A marketing-friendly first impression with production-style product depth: dense timeline history, session cards, custom metrics, findings, and operational follow-through.
             </p>
+            <p className="mt-2 max-w-3xl text-sm text-slate-600">
+              Demo fixtures are intentionally seeded for presentation. In production workflows, session facts should come from canonical records (for example: <code>pt/sessions/YYYY-MM-DD.json</code>) to preserve SSOT integrity.
+            </p>
             <div className="mt-5 flex flex-wrap gap-3 text-sm">
               <Link href="/kits" className="rounded-xl bg-slate-900 px-4 py-2 font-medium text-white transition hover:bg-slate-700">
                 View Placeholder Kits
