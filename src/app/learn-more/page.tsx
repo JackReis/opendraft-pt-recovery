@@ -11,6 +11,15 @@ export default function LearnMorePage() {
             Clear flow, single source of truth: every dashboard view is downstream of the canonical session record.
           </p>
 
+          <div className="info-card" style={{ marginTop: 16 }}>
+            <p className="label">Buyer-facing I/O</p>
+            <p className="muted">
+              <strong>Input:</strong> sanitized transcript, optional context notes, and user-defined custom metrics.
+              <br />
+              <strong>Output:</strong> canonical session JSON, dual notes (operational + reflective), and synced dashboard sections.
+            </p>
+          </div>
+
           <div className="stack" style={{ marginTop: 16 }}>
             <div className="info-card">
               <p className="label">Step 1</p>

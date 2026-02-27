@@ -13,8 +13,13 @@ export default function LaunchPage() {
             Product-grade PT recovery dashboard, ready for daily use
           </h1>
           <p className="muted" style={{ fontSize: "1.05rem", maxWidth: 760 }}>
-            A single operational interface for session tracking, custom metrics, findings, assignments, and follow-through.
-            Adaptability modes live in the same UI so the product stays coherent as context changes.
+            Users provide a sanitized session transcript, context notes, and custom metric labels. OpenDraft turns that into a
+            canonical session record, dual notes (operational + reflective), and a dashboard for timeline, findings,
+            assignments, and follow-through. Adaptability modes live in the same UI so the product stays coherent as context
+            changes.
+          </p>
+          <p className="muted" style={{ marginTop: 10, maxWidth: 760 }}>
+            Non-diagnostic by design: this is workflow intelligence for recovery tracking, not medical advice.
           </p>
 
           <div className="launch-cta">

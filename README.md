@@ -32,6 +32,20 @@ Learn More explainer: `/learn-more`
 - Always validate care decisions with qualified professionals.
 - Public examples are sanitized and placeholder-safe.
 
+## Buyer-facing input/output clarity
+
+**What users provide**
+- Session transcript text (sanitized)
+- Optional context notes (schedule, travel, work constraints, sleep/fatigue context)
+- Custom metric labels they define (for example: `morning_settle_minutes`)
+
+**What users get**
+- Canonical session JSON (structured source-of-truth record)
+- Dual notes generated from that canonical record:
+  - operational notes (actions, checklists, follow-ups)
+  - reflective notes (context + nuance, explicitly non-diagnostic)
+- Synced dashboard projections (timeline, findings, assignments, open questions, follow-through)
+
 ## Tech stack
 
 - Next.js (App Router)

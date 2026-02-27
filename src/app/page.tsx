@@ -281,7 +281,7 @@ export default function Home() {
     <main className="app-shell">
       <header className="top-strip">
         <div className="container top-strip-inner">
-          <h1>Healthcare Management System</h1>
+          <h1>PT Recovery Workflow Dashboard</h1>
           <div className="entity-switcher">
             <span className="chip-active">PT Session</span>
             <span className="chip">All Providers</span>
@@ -319,8 +319,9 @@ export default function Home() {
               <p className="eyebrow">PT Session Experience</p>
               <h2>Single product surface with built-in adaptability modes</h2>
               <p className="muted mt-2">
-                No separate kit pages. Adaptation lives inside the same operational session dashboard to keep UI flow, data model,
-                and user mental model consistent.
+                Input: sanitized transcript + user context + custom metrics. Output: canonical session record, dual notes, and
+                synced dashboard views. No separate kit pages: adaptation lives inside the same operational dashboard to keep UI
+                flow, data model, and user mental model consistent.
               </p>
             </div>
           </div>
