@@ -1,0 +1,34 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="50" y="50" width="1500" height="90" rx="14" fill="#111827" stroke="#334155"/>
+  <rect x="70" y="78" width="260" height="34" rx="8" fill="#22c55e" fill-opacity="0.2"/>
+  <text x="82" y="101" fill="#86efac" font-size="20" font-family="Arial">PT Recovery Command Center</text>
+  <g fill="#111827" stroke="#334155">
+    <rect x="50" y="170" width="360" height="170" rx="14"/>
+    <rect x="430" y="170" width="360" height="170" rx="14"/>
+    <rect x="810" y="170" width="360" height="170" rx="14"/>
+    <rect x="1190" y="170" width="360" height="170" rx="14"/>
+  </g>
+  <text x="75" y="215" fill="#94a3b8" font-size="18" font-family="Arial">Sessions</text>
+  <text x="75" y="280" fill="#e2e8f0" font-size="52" font-family="Arial">12</text>
+  <text x="455" y="215" fill="#94a3b8" font-size="18" font-family="Arial">Pec Engagement</text>
+  <text x="455" y="280" fill="#e2e8f0" font-size="52" font-family="Arial">5.8/10</text>
+  <text x="835" y="215" fill="#94a3b8" font-size="18" font-family="Arial">CPAP Compliance</text>
+  <text x="835" y="280" fill="#e2e8f0" font-size="52" font-family="Arial">71%</text>
+  <text x="1215" y="215" fill="#94a3b8" font-size="18" font-family="Arial">Open Questions</text>
+  <text x="1215" y="280" fill="#e2e8f0" font-size="52" font-family="Arial">8</text>
+  <rect x="50" y="370" width="980" height="470" rx="14" fill="#111827" stroke="#334155"/>
+  <polyline points="90,760 200,700 310,680 420,640 530,620 640,570 750,560 860,520 970,500" fill="none" stroke="#22c55e" stroke-width="6"/>
+  <text x="80" y="420" fill="#cbd5e1" font-size="24" font-family="Arial">Recovery Trend</text>
+  <rect x="1060" y="370" width="490" height="470" rx="14" fill="#111827" stroke="#334155"/>
+  <text x="1085" y="420" fill="#cbd5e1" font-size="24" font-family="Arial">Session Timeline</text>
+  <text x="1085" y="470" fill="#94a3b8" font-size="18" font-family="Arial">• 2026-02-25 — Production routine update</text>
+  <text x="1085" y="510" fill="#94a3b8" font-size="18" font-family="Arial">• 2026-02-18 — Fascial protocol progression</text>
+  <text x="1085" y="550" fill="#94a3b8" font-size="18" font-family="Arial">• 2026-02-09 — Baseline assessment</text>
+</svg>
