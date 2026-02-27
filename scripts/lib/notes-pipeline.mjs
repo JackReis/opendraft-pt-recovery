@@ -1,5 +1,23 @@
 import fs from 'fs';
 
+function sanitizePublicText(value) {
+  if (!value) return value;
+  return String(value)
+    .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[REDACTED_EMAIL]')
+    .replace(/\b(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g, '[REDACTED_PHONE]')
+    .replace(/\b\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}\b/g, '[REDACTED_DATE]')
+    .replace(/\b\d{4}[\/\-]\d{2}[\/\-]\d{2}\b/g, '[REDACTED_DATE]')
+    .trim();
+}
+
+function sanitizeSessionDate(raw) {
+  return /YYYY-MM-DD/i.test(raw || '') ? 'YYYY-MM-DD' : 'YYYY-MM-DD';
+}
+
+function sanitizeProvider(raw) {
+  return /^\[PROVIDER_NAME\]$/i.test((raw || '').trim()) ? '[PROVIDER_NAME]' : '[PROVIDER_NAME]';
+}
+
 export function readText(path) {
   return fs.readFileSync(path, 'utf8');
 }
@@ -16,8 +34,8 @@ export function parseTranscriptToSession(text) {
   const lines = text.split('\n');
   const find = (re, fallback = '[unknown]') => (text.match(re)?.[1] || fallback).trim();
 
-  const sessionDate = find(/Date:\s*([^\n]+)/i, 'YYYY-MM-DD');
-  const provider = find(/Provider:\s*([^\n]+)/i, '[PROVIDER_NAME]');
+  const sessionDate = sanitizeSessionDate(find(/Date:\s*([^\n]+)/i, 'YYYY-MM-DD'));
+  const provider = sanitizeProvider(find(/Provider:\s*([^\n]+)/i, '[PROVIDER_NAME]'));
   const pain = find(/pain[^\n]*?(\d+\s*(?:\/|out of)\s*10)/i, 'n/a').replace(/\s*out of\s*/i, '/');
   const nextSession = find(/next session\s*([^\n\.]+)/i, 'n/a');
 
@@ -30,11 +48,11 @@ export function parseTranscriptToSession(text) {
     if (!line) continue;
 
     if (/therapist:/i.test(line) && /(keep|add|exercise|sets?|reps?|holds?|track|capture)/i.test(line)) {
-      assignments.push(line.replace(/^\s*Therapist:\s*/i, '').trim());
+      assignments.push(sanitizePublicText(line.replace(/^\s*Therapist:\s*/i, '').trim()));
     }
 
     if (/patient:/i.test(line) && /(stiff|pain|fatigue|sleep|sensitive|guarding)/i.test(line)) {
-      findings.push(line.replace(/^\s*Patient:\s*/i, '').trim());
+      findings.push(sanitizePublicText(line.replace(/^\s*Patient:\s*/i, '').trim()));
     }
 
     for (const m of line.matchAll(/custom metric (?:called )?([a-zA-Z0-9_\-]+)/gi)) {
@@ -148,8 +166,8 @@ export function buildDashboardPayload(session, dualNotes) {
         metrics: session.metrics || {},
       },
       enhanced_notes: {
-        operational: dualNotes.operational,
-        reflective: dualNotes.reflective,
+        operational: dualNotes?.operational || {},
+        reflective: dualNotes?.reflective || {},
       },
       ssot_notice:
         'SSOT = canonical session JSON. Dashboard views are downstream projections and should not diverge from canonical source records.',
