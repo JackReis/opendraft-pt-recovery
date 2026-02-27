@@ -1,0 +1,34 @@
+{
+  "summary": {
+    "overall_wellness_score": 7.6,
+    "supplement_adherence": 84,
+    "meal_adherence": 79,
+    "recovery_progress": 68
+  },
+  "quick_stats": {
+    "appointments": {
+      "next_appointment": {
+        "provider": "Lead PT",
+        "days_until": 4
+      }
+    }
+  },
+  "perma_v": {
+    "overall": 7.4,
+    "trend": "improving",
+    "dimensions": {
+      "positive_emotion": 7.2,
+      "engagement": 7.8,
+      "relationships": 7.3,
+      "meaning": 7.6,
+      "accomplishment": 7.5,
+      "vitality": 6.9
+    }
+  },
+  "timeline": [
+    {"week": "Wk-1", "score": 7.1},
+    {"week": "Wk-2", "score": 7.2},
+    {"week": "Wk-3", "score": 7.4},
+    {"week": "Wk-4", "score": 7.6}
+  ]
+}

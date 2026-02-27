@@ -1,0 +1,93 @@
+[
+  {
+    "id": "session-04",
+    "label": "Session 4",
+    "date": "Feb 25, 2026",
+    "time": "5:00 PM",
+    "status": "in-review",
+    "provider": {
+      "name": "Lead PT",
+      "credentials": "DPT",
+      "organization": "Performance Recovery Studio",
+      "phone": "[PUBLIC_CONTACT]",
+      "address": "[CITY CLINIC ADDRESS]"
+    },
+    "context": [
+      "Latest session synthesis generated from anonymized transcript notes.",
+      "Current objective: reduce compensation and improve movement confidence.",
+      "Profile is public-safe placeholder content, not individual medical history."
+    ],
+    "concerns": [
+      {"priority": 1, "title": "Morning stiffness before first workload block", "detail": "Warm-up sequence still needs consistency.", "severity": "high"},
+      {"priority": 2, "title": "Rotation tolerance declines under fatigue", "detail": "Keep anti-rotation strategy as baseline movement rule.", "severity": "moderate"},
+      {"priority": 3, "title": "Load pacing variability across the week", "detail": "Use daily readiness markers before progression.", "severity": "moderate"}
+    ],
+    "protocol": {
+      "morning": [
+        "Hydration and light mobility sequence before first desk/driving block",
+        "Breath-led reset for 8-10 minutes",
+        "No loaded rotation until movement quality baseline is achieved",
+        "Log one daily readiness metric"
+      ],
+      "supplements": "General wellness placeholders only. No personalized treatment details.",
+      "restrictions": "Avoid high-load twisting and rapid progression without supervision."
+    },
+    "exercises": [
+      {"name": "Isometric wall press + exhale hold", "detail": "Focus on controlled breathing and trunk position.", "sets": "3 x 5"},
+      {"name": "Band-resisted anti-rotation step-outs", "detail": "Keep movement smooth, no torque spikes.", "sets": "2 x 8 each side"},
+      {"name": "Supported decompression hang", "detail": "Maintain shoulder control with slow breath cadence.", "sets": "4 x 25 sec"},
+      {"name": "Floor reset sequence", "detail": "Breath-led down-regulation after high-stress windows.", "sets": "8 min"}
+    ],
+    "questions": [
+      "Which readiness metric should gate next progression?",
+      "Can travel-week adaptations preserve momentum with lower volume?",
+      "What signs indicate assignment dosage should stay flat this week?"
+    ],
+    "findings": [
+      "Movement quality improves with controlled pacing.",
+      "Compensation returns when fatigue rises late session.",
+      "Breathing cadence is a strong stabilizing variable."
+    ],
+    "prescribed": [
+      "Continue anti-rotation block for one more cycle",
+      "Capture short form-check clips before next visit",
+      "Track morning_settle_minutes daily"
+    ],
+    "redFlags": [
+      {"symptom": "Sharp pain spike during movement", "action": "Stop and scale down"},
+      {"symptom": "Persistent discomfort after light activity", "action": "Pause and review protocol"},
+      {"symptom": "Unexpected breath distress", "action": "Stop and seek professional care"}
+    ],
+    "decompressionReset": "Use supported position + breathing reset. Avoid forceful self-adjustment.",
+    "careTeam": [
+      {"role": "Physical Therapy", "name": "Lead PT", "org": "Performance Recovery Studio"},
+      {"role": "Primary Care", "name": "Primary Provider", "org": "Community Health Group"},
+      {"role": "Wellness Coaching", "name": "Support Coach", "org": "Recovery Coaching Program"}
+    ],
+    "timeline": [
+      {"timestamp": "4:42 PM", "event": "Baseline movement screen", "owner": "PT"},
+      {"timestamp": "4:55 PM", "event": "Assignment sequencing update", "owner": "PT"},
+      {"timestamp": "5:11 PM", "event": "Custom metric field confirmed", "owner": "User"},
+      {"timestamp": "5:24 PM", "event": "Follow-up capture plan set", "owner": "Both"}
+    ]
+  },
+  {
+    "id": "session-03",
+    "label": "Session 3",
+    "date": "Feb 18, 2026",
+    "time": "5:00 PM",
+    "status": "completed",
+    "provider": {"name": "Lead PT", "credentials": "DPT", "organization": "Performance Recovery Studio", "phone": "[PUBLIC_CONTACT]", "address": "[CITY CLINIC ADDRESS]"},
+    "context": ["Previous cycle focused on restoring controlled trunk stability."],
+    "concerns": [],
+    "protocol": {"morning": ["Baseline reset + hydration"], "supplements": "Placeholder", "restrictions": "Avoid sudden spikes"},
+    "exercises": [{"name": "Breath-led floor reset", "detail": "Daily baseline", "sets": "8 min"}],
+    "questions": ["What threshold indicates readiness for progression?"],
+    "findings": ["Progress improved when pacing stayed consistent."],
+    "prescribed": ["Continue baseline program"],
+    "redFlags": [{"symptom": "Pain spike > normal range", "action": "Stop activity"}],
+    "decompressionReset": "Use guided reset sequence.",
+    "careTeam": [{"role": "Physical Therapy", "name": "Lead PT"}],
+    "timeline": [{"timestamp": "5:08 PM", "event": "Progression introduced", "owner": "PT"}]
+  }
+]

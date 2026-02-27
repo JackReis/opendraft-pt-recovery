@@ -1,0 +1,54 @@
+{
+  "providers": [
+    {
+      "id": "pt-core",
+      "name": "Lead PT",
+      "credentials": "DPT",
+      "specialty": "Physical Therapy",
+      "system": "mobility",
+      "status": "active",
+      "frequency": "weekly",
+      "organization": "Performance Recovery Studio",
+      "notes": "Primary movement rehab coordination"
+    },
+    {
+      "id": "pcp",
+      "name": "Primary Provider",
+      "credentials": "MD/DO",
+      "specialty": "Primary Care",
+      "system": "general-health",
+      "status": "active",
+      "frequency": "quarterly",
+      "organization": "Community Health Group",
+      "notes": "General care and coordination"
+    },
+    {
+      "id": "wellness",
+      "name": "Support Coach",
+      "credentials": "Coach",
+      "specialty": "Behavior & Recovery Coaching",
+      "system": "behavioral",
+      "status": "active",
+      "frequency": "weekly",
+      "organization": "Recovery Coaching Program",
+      "notes": "Adherence and habit support"
+    },
+    {
+      "id": "specialist-pending",
+      "name": "Specialist (TBD)",
+      "credentials": "MD",
+      "specialty": "Specialty Follow-up",
+      "system": "specialty",
+      "status": "pending",
+      "frequency": "as-needed",
+      "organization": "[TO_BE_SELECTED]",
+      "notes": "Future escalation route"
+    }
+  ],
+  "systems": [
+    {"id": "mobility", "name": "Mobility", "color": "blue"},
+    {"id": "general-health", "name": "General Health", "color": "green"},
+    {"id": "behavioral", "name": "Behavioral", "color": "purple"},
+    {"id": "specialty", "name": "Specialty", "color": "amber"}
+  ]
+}
