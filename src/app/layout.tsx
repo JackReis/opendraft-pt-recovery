@@ -14,9 +14,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OpenDraft PT Sessions Demo",
+  title: "OpenDraft PT Sessions",
   description:
-    "A production-style PT Sessions dashboard demo with timeline, metrics, findings, assignments, and reusable kit placeholders.",
+    "Product-first PT Sessions dashboard with timeline, custom metrics, findings, assignments, follow-ups, and adaptable session modes.",
 };
 
 export default function RootLayout({

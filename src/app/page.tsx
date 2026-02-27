@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 
 type SessionStatus = "completed" | "upcoming" | "in-review";
 type Severity = "high" | "moderate" | "watch";
+type TemplateMode = "baseline" | "travel-week" | "high-compliance";
 
 type Session = {
   id: string;
@@ -159,9 +159,7 @@ const sessions: Session[] = [
       "Maintain daily metric logging.",
       "Review next plan after Wednesday check-in.",
     ],
-    notes: [
-      "Context references user-provided activity logs and check-in notes.",
-    ],
+    notes: ["Context references user-provided activity logs and check-in notes."],
     timeline: [
       { timestamp: "4:45 PM", event: "Session opened with comfort screen", owner: "PT" },
       { timestamp: "5:08 PM", event: "Posterior chain progression introduced", owner: "PT" },
@@ -197,15 +195,9 @@ const sessions: Session[] = [
         confidence: "Form confidence: pending",
       },
     ],
-    openQuestions: [
-      "Which checkpoint should be primary for next-phase readiness?",
-    ],
-    followUps: [
-      "Bring updated context notes and custom metric snapshots.",
-    ],
-    notes: [
-      "Schedule and goals are placeholders for demo use.",
-    ],
+    openQuestions: ["Which checkpoint should be primary for next-phase readiness?"],
+    followUps: ["Bring updated context notes and custom metric snapshots."],
+    notes: ["Schedule and goals are placeholders for demo use."],
     timeline: [
       { timestamp: "Planned", event: "Readiness assessment", owner: "PT" },
       { timestamp: "Planned", event: "Assignment progression decision", owner: "Both" },
@@ -214,224 +206,293 @@ const sessions: Session[] = [
 ];
 
 const statusClass: Record<SessionStatus, string> = {
-  completed: "bg-emerald-100 text-emerald-700",
-  upcoming: "bg-sky-100 text-sky-700",
-  "in-review": "bg-amber-100 text-amber-700",
+  completed: "status-pill status-completed",
+  upcoming: "status-pill status-upcoming",
+  "in-review": "status-pill status-review",
 };
 
 const severityClass: Record<Severity, string> = {
-  high: "border-rose-300 bg-rose-50 text-rose-700",
-  moderate: "border-amber-300 bg-amber-50 text-amber-700",
-  watch: "border-teal-300 bg-teal-50 text-teal-700",
+  high: "severity-pill severity-high",
+  moderate: "severity-pill severity-moderate",
+  watch: "severity-pill severity-watch",
+};
+
+const templateModes: Record<TemplateMode, { title: string; summary: string; shifts: string[] }> = {
+  baseline: {
+    title: "Baseline Mode",
+    summary: "Default PT session workflow focused on consistency and clean progression signals.",
+    shifts: [
+      "Standard assignment dosage",
+      "Balanced metrics mix (pain, capacity, guarding)",
+      "Weekly follow-up cadence",
+    ],
+  },
+  "travel-week": {
+    title: "Travel Week Adaptation",
+    summary: "Same product surface, adapted dosage + checkpoints for travel and constrained environments.",
+    shifts: [
+      "Reduced-volume assignment variants",
+      "Higher emphasis on morning settle + stiffness indicators",
+      "Short-form check-ins to preserve continuity",
+    ],
+  },
+  "high-compliance": {
+    title: "High Compliance Sprint",
+    summary: "Intensified cycle for users hitting high adherence and ready for finer progression decisions.",
+    shifts: [
+      "Increased progression checkpoints",
+      "Expanded custom metrics for load and fatigue",
+      "Twice-weekly clinician follow-up windows",
+    ],
+  },
 };
 
 function DeltaPill({ direction, delta }: { direction: "up" | "down" | "flat"; delta: string }) {
   const palette = {
-    up: "bg-emerald-100 text-emerald-700",
-    down: "bg-sky-100 text-sky-700",
-    flat: "bg-slate-200 text-slate-700",
+    up: "delta-pill delta-up",
+    down: "delta-pill delta-down",
+    flat: "delta-pill delta-flat",
   } as const;
 
-  return <span className={`rounded-full px-2 py-1 text-xs font-semibold ${palette[direction]}`}>{delta}</span>;
+  return <span className={palette[direction]}>{delta}</span>;
 }
 
 export default function Home() {
   const [activeId, setActiveId] = useState(sessions[0].id);
+  const [mode, setMode] = useState<TemplateMode>("baseline");
 
   const activeSession = useMemo(
     () => sessions.find((session) => session.id === activeId) ?? sessions[0],
     [activeId],
   );
 
-  const headlineMetrics = useMemo(() => {
-    return [
-      { label: "active_cycle", value: "Week 6 of 12", detail: "Current protocol block" },
-      { label: "session_completion", value: "3 / 4", detail: "Sessions attended this cycle" },
-      { label: "assignment_adherence", value: "84%", detail: "Last 10-day completion" },
-      { label: "custom_metrics", value: "11", detail: "User-defined metric fields" },
-    ];
-  }, []);
+  const headlineMetrics = [
+    { label: "current_cycle", value: "Week 6 of 12", detail: "Protocol progression block" },
+    { label: "session_completion", value: "3 / 4", detail: "Sessions attended this cycle" },
+    { label: "assignment_adherence", value: "84%", detail: "Last 10-day completion" },
+    { label: "custom_metrics", value: "11", detail: "User-defined metric fields" },
+  ];
+
+  const selectedMode = templateModes[mode];
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,_#dcfce7,_#f8fafc_40%,_#e2e8f0)] text-slate-900">
-      <section className="mx-auto max-w-7xl px-6 py-10">
-        <p className="inline-flex rounded-full border border-emerald-300 bg-white/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
-          OpenDraft Recovery Experience
-        </p>
-        <div className="mt-4 grid gap-6 rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-xl backdrop-blur md:grid-cols-[1.2fr_0.8fr]">
-          <div>
-            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">PT Sessions Dashboard Template</h1>
-            <p className="mt-3 max-w-3xl text-base text-slate-700 md:text-lg">
-              A marketing-friendly first impression with production-style product depth: dense timeline history, session cards, custom metrics, findings, and operational follow-through.
-            </p>
-            <p className="mt-2 max-w-3xl text-sm text-slate-600">
-              Demo fixtures are intentionally seeded for presentation. In production workflows, session facts should come from canonical records (for example: <code>pt/sessions/YYYY-MM-DD.json</code>) to preserve SSOT integrity.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3 text-sm">
-              <Link href="/kits" className="rounded-xl bg-slate-900 px-4 py-2 font-medium text-white transition hover:bg-slate-700">
-                View Placeholder Kits
-              </Link>
-              <span className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-600">
-                User-provided context notes only
-              </span>
-            </div>
-          </div>
-          <div className="grid gap-3">
-            {headlineMetrics.map((metric) => (
-              <article key={metric.label} className="rounded-2xl border border-slate-200 bg-white p-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{metric.label}</p>
-                <p className="mt-1 text-2xl font-semibold">{metric.value}</p>
-                <p className="text-sm text-slate-600">{metric.detail}</p>
-              </article>
-            ))}
+    <main className="app-shell">
+      <header className="top-strip">
+        <div className="container top-strip-inner">
+          <h1>Healthcare Management System</h1>
+          <div className="entity-switcher">
+            <span className="chip-active">PT Session</span>
+            <span className="chip">All Providers</span>
+            <span className="chip">Wellness Analytics</span>
           </div>
         </div>
-      </section>
+      </header>
 
-      <section className="mx-auto grid max-w-7xl gap-6 px-6 pb-14 lg:grid-cols-[340px_1fr]">
-        <aside className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="text-lg font-semibold">PT Sessions Timeline</h2>
-          <p className="mb-4 text-sm text-slate-600">Select a session to inspect findings, assignments, and follow-up details.</p>
-          <div className="space-y-3">
-            {sessions.map((session) => (
-              <button
-                key={session.id}
-                onClick={() => setActiveId(session.id)}
-                className={`w-full rounded-2xl border p-4 text-left transition ${
-                  activeId === session.id
-                    ? "border-slate-900 bg-slate-900 text-white"
-                    : "border-slate-200 bg-white hover:border-slate-400"
-                }`}
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-semibold">{session.label}</span>
-                  <span className={`rounded-full px-2 py-1 text-xs font-semibold ${activeId === session.id ? "bg-white/20 text-white" : statusClass[session.status]}`}>
-                    {session.status}
-                  </span>
-                </div>
-                <p className={`mt-1 text-sm ${activeId === session.id ? "text-slate-200" : "text-slate-600"}`}>
-                  {session.date} at {session.time}
-                </p>
-                <p className={`text-xs ${activeId === session.id ? "text-slate-300" : "text-slate-500"}`}>{session.site}</p>
-              </button>
-            ))}
+      <div className="container body-grid">
+        <aside className="left-rail panel">
+          <div className="rail-head">
+            <p className="eyebrow">OpenDraft</p>
+            <h2>PT Sessions</h2>
+            <p>Product-first session intelligence + workflow continuity.</p>
+          </div>
+
+          <nav className="rail-nav">
+            <button className="rail-nav-active">Dashboard</button>
+            <button>Sessions</button>
+            <button>Metrics</button>
+            <button>Follow-Ups</button>
+            <button>Context Notes</button>
+          </nav>
+
+          <div className="panel status-card">
+            <p className="label">Current Cycle</p>
+            <p className="value">Month 2 / 3</p>
+            <p className="muted">Phase: Active Mobility + Stability</p>
           </div>
         </aside>
 
-        <div className="space-y-6">
-          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{activeSession.label}</p>
-                <h2 className="mt-1 text-3xl font-semibold">{activeSession.objective}</h2>
-                <p className="mt-2 text-sm text-slate-600">
-                  {activeSession.provider} • {activeSession.site} • {activeSession.date}, {activeSession.time}
-                </p>
-              </div>
-              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${statusClass[activeSession.status]}`}>{activeSession.status}</span>
+        <section className="main-col">
+          <div className="panel hero-panel">
+            <div>
+              <p className="eyebrow">PT Session Experience</p>
+              <h2>Single product surface with built-in adaptability modes</h2>
+              <p className="muted mt-2">
+                No separate kit pages. Adaptation lives inside the same operational session dashboard to keep UI flow, data model,
+                and user mental model consistent.
+              </p>
             </div>
-            <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-              {activeSession.metrics.map((metric) => (
-                <article key={metric.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                  <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{metric.label}</p>
-                  <p className="mt-1 text-xl font-semibold">{metric.value}</p>
-                  <div className="mt-2">
-                    <DeltaPill direction={metric.direction} delta={metric.delta} />
-                  </div>
-                </article>
+          </div>
+
+          <div className="metric-grid">
+            {headlineMetrics.map((metric) => (
+              <article key={metric.label} className="panel metric-card">
+                <p className="label">{metric.label}</p>
+                <p className="value-lg">{metric.value}</p>
+                <p className="muted">{metric.detail}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="panel mode-panel">
+            <div className="mode-header">
+              <h3>Template / Adaptability Mode</h3>
+              <p className="muted">Same interface, adjustable behavior profile.</p>
+            </div>
+            <div className="mode-chips">
+              {(Object.keys(templateModes) as TemplateMode[]).map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setMode(key)}
+                  className={mode === key ? "chip-active" : "chip"}
+                >
+                  {templateModes[key].title}
+                </button>
               ))}
             </div>
-          </section>
+            <div className="mode-detail">
+              <p className="value">{selectedMode.title}</p>
+              <p className="muted">{selectedMode.summary}</p>
+              <ul>
+                {selectedMode.shifts.map((shift) => (
+                  <li key={shift}>{shift}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
-          <section className="grid gap-6 xl:grid-cols-2">
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold">Session Findings</h3>
-              <div className="mt-4 space-y-3">
-                {activeSession.findings.map((finding) => (
-                  <div key={finding.title} className="rounded-2xl border border-slate-200 p-4">
-                    <div className="flex items-start justify-between gap-3">
-                      <p className="font-medium">{finding.title}</p>
-                      <span className={`rounded-full border px-2 py-1 text-xs font-semibold ${severityClass[finding.severity]}`}>
-                        {finding.severity}
+          <div className="content-grid">
+            <aside className="panel timeline-list">
+              <h3>PT Timeline</h3>
+              <p className="muted">Select session to inspect metrics, findings, and follow-through.</p>
+              <div className="stack">
+                {sessions.map((session) => (
+                  <button
+                    key={session.id}
+                    onClick={() => setActiveId(session.id)}
+                    className={activeId === session.id ? "timeline-item active" : "timeline-item"}
+                  >
+                    <div className="row-between">
+                      <span>{session.label}</span>
+                      <span className={activeId === session.id ? "status-pill status-selected" : statusClass[session.status]}>
+                        {session.status}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm text-slate-600">{finding.detail}</p>
-                  </div>
+                    <p>{session.date} • {session.time}</p>
+                    <p className="muted-sm">{session.site}</p>
+                  </button>
                 ))}
               </div>
-            </article>
+            </aside>
 
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold">Assignments</h3>
-              <div className="mt-4 space-y-3">
-                {activeSession.assignments.map((assignment, index) => (
-                  <div key={assignment.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                    <p className="text-sm font-semibold text-slate-500">#{index + 1}</p>
-                    <p className="font-medium">{assignment.title}</p>
-                    <p className="text-sm text-slate-600">{assignment.dosage}</p>
-                    <p className="mt-1 text-xs text-slate-500">{assignment.confidence}</p>
+            <div className="stack">
+              <article className="panel">
+                <div className="row-between wrap">
+                  <div>
+                    <p className="eyebrow">{activeSession.label}</p>
+                    <h3>{activeSession.objective}</h3>
+                    <p className="muted">
+                      {activeSession.provider} • {activeSession.site} • {activeSession.date}, {activeSession.time}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </article>
-          </section>
+                  <span className={statusClass[activeSession.status]}>{activeSession.status}</span>
+                </div>
 
-          <section className="grid gap-6 xl:grid-cols-2">
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold">Open Questions</h3>
-              <ol className="mt-4 space-y-3 text-sm text-slate-700">
-                {activeSession.openQuestions.map((question, index) => (
-                  <li key={question} className="rounded-2xl border border-slate-200 p-4">
-                    <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
-                      {index + 1}
-                    </span>
-                    {question}
-                  </li>
-                ))}
-              </ol>
-            </article>
+                <div className="mini-metric-grid">
+                  {activeSession.metrics.map((metric) => (
+                    <article key={metric.label} className="mini-metric">
+                      <p className="label">{metric.label}</p>
+                      <p className="value">{metric.value}</p>
+                      <DeltaPill direction={metric.direction} delta={metric.delta} />
+                    </article>
+                  ))}
+                </div>
+              </article>
 
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold">Follow-Ups</h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-700">
-                {activeSession.followUps.map((item) => (
-                  <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </section>
-
-          <section className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold">Session Event Timeline</h3>
-              <div className="mt-4 space-y-3">
-                {activeSession.timeline.map((event) => (
-                  <div key={`${event.timestamp}-${event.event}`} className="flex items-start gap-3 rounded-2xl border border-slate-200 p-4">
-                    <div className="min-w-20 rounded-lg bg-slate-900 px-2 py-1 text-center text-xs font-semibold text-white">{event.timestamp}</div>
-                    <div>
-                      <p className="font-medium">{event.event}</p>
-                      <p className="text-xs text-slate-500">Owner: {event.owner}</p>
-                    </div>
+              <section className="split-grid">
+                <article className="panel">
+                  <h3>Findings</h3>
+                  <div className="stack mt-2">
+                    {activeSession.findings.map((finding) => (
+                      <div key={finding.title} className="info-card">
+                        <div className="row-between">
+                          <p>{finding.title}</p>
+                          <span className={severityClass[finding.severity]}>{finding.severity}</span>
+                        </div>
+                        <p className="muted">{finding.detail}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </article>
+                </article>
 
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold">Context & Safety Notes</h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-700">
-                {activeSession.notes.map((note) => (
-                  <li key={note} className="rounded-2xl border border-slate-200 bg-emerald-50 p-4">
-                    {note}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </section>
-        </div>
-      </section>
+                <article className="panel">
+                  <h3>Assignments</h3>
+                  <div className="stack mt-2">
+                    {activeSession.assignments.map((assignment, index) => (
+                      <div key={assignment.title} className="info-card">
+                        <p className="label">#{index + 1}</p>
+                        <p>{assignment.title}</p>
+                        <p className="muted">{assignment.dosage}</p>
+                        <p className="muted-sm">{assignment.confidence}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              </section>
+
+              <section className="split-grid">
+                <article className="panel">
+                  <h3>Open Questions</h3>
+                  <ol className="stack mt-2">
+                    {activeSession.openQuestions.map((question, index) => (
+                      <li key={question} className="info-card">
+                        <strong>{index + 1}.</strong> {question}
+                      </li>
+                    ))}
+                  </ol>
+                </article>
+
+                <article className="panel">
+                  <h3>Follow-Ups</h3>
+                  <ul className="stack mt-2">
+                    {activeSession.followUps.map((item) => (
+                      <li key={item} className="info-card">{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              </section>
+
+              <section className="split-grid-wide">
+                <article className="panel">
+                  <h3>Session Event Timeline</h3>
+                  <div className="stack mt-2">
+                    {activeSession.timeline.map((event) => (
+                      <div key={`${event.timestamp}-${event.event}`} className="timeline-event">
+                        <span>{event.timestamp}</span>
+                        <div>
+                          <p>{event.event}</p>
+                          <p className="muted-sm">Owner: {event.owner}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+
+                <article className="panel safety-notes">
+                  <h3>SSOT + Safety Messaging</h3>
+                  <ul className="stack mt-2">
+                    {activeSession.notes.map((note) => (
+                      <li key={note} className="info-card success">{note}</li>
+                    ))}
+                    <li className="info-card success">
+                      SSOT: care decisions are informed by user-provided context + custom metrics in this app. Not medical advice.
+                    </li>
+                  </ul>
+                </article>
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
