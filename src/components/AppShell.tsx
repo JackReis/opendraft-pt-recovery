@@ -31,7 +31,12 @@ export function AppShell({ title, subtitle, children }: { title: string; subtitl
           {tabs.map((tab) => {
             const active = pathname === tab.href || (tab.href === "/sessions" && pathname === "/");
             return (
-              <Link key={tab.href} href={tab.href} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ${active ? "bg-slate-900 text-white" : "border border-slate-300 bg-white text-slate-800 hover:bg-slate-100"}`}>
+              <Link
+                key={tab.href}
+                href={tab.href}
+                aria-current={active ? "page" : undefined}
+                className={`tab-pill whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ${active ? "tab-pill-active" : "border border-slate-300 bg-white text-slate-800 hover:bg-slate-100"}`}
+              >
                 {tab.label}
               </Link>
             );

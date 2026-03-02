@@ -310,6 +310,18 @@ h3 {
   white-space: nowrap;
 }
 
+/* Top nav pills: enforce readable active state */
+.tab-pill {
+  color: #1e293b;
+}
+
+.tab-pill-active,
+.tab-pill[aria-current="page"] {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border: 1px solid #0f172a !important;
+}
+
 .chip {
   border: 1px solid var(--line);
   background: #fff;
